@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Droid 1997';
+  src: url('./assets/fonts/Droid 1997.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@theme {
+  --font-droid: 'Droid 1997', sans-serif;
+}
+
+body {
+  @apply m-0 bg-[#111111] text-white overflow-x-hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Chrome, Safari, and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom styles for the jagged red banner */
+.red-brush-stroke {
+  background-color: #e50000;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.stripe-pattern {
+  background-image: repeating-linear-gradient(
+    90deg, 
+    transparent, 
+    transparent 20px, 
+    #111111 20px, 
+    #111111 40px
+  );
+}
+
+/* Minime sticker entrance — opacity only, no transform so Draggable can use it freely */
+@keyframes minimeEntrance {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.minime-entrance {
+  animation: minimeEntrance 1s ease 1.4s both;
+}
+
+/* Responsive positioning for the minime sticker */
+.minime-position {
+  /* Mobile: centered just below the PORTFOLIO text */
+  /* Text is at 50vh center, so bottom of text ≈ 50vh + half font height */
+  top: 58vh;
+  left: 2vw; /* half of image width */
+}
+
+/* Tablet (640px+) */
+@media (min-width: 640px) {
+  .minime-position {
+    bottom: 5vh;
+    left: 8vw;
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  .minime-position {
+    bottom: 8vh;
+    left: 20vw;
+  }
+}
+
+/* Large desktop (1280px+) */
+@media (min-width: 1280px) {
+  .minime-position {
+    bottom: 8vh;
+    left: 22vw;
+  }
+}
+
+/* Persistent organic jiggle for the sticker character */
+@keyframes stickerJiggle {
+  0% { transform: rotate(-3deg) translateY(0px); }
+  50% { transform: rotate(3deg) translateY(-5px); }
+  100% { transform: rotate(-3deg) translateY(0px); }
+}
+
+.sticker-jiggle {
+  animation: stickerJiggle 3s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+/* Vertical bobbing for the secondary About Me image */
+@keyframes stickerBob {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+.sticker-bob {
+  animation: stickerBob 4s ease-in-out infinite;
+}
+
+/* Fan Rotation */
+.fan-blade-poly {
+  transform-origin: center;
+}
+
+@keyframes fan-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-fan-spin {
+  animation: fan-spin 0.8s linear infinite;
+}
+
+/* Industrial Toggle Switch */
+.brutalist-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 25px;
+}
+
+.brutalist-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #333;
+  transition: .2s;
+  border: 2px solid #111;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .2s;
+}
+
+input:checked + .slider {
+  background-color: #8B0000;
+}
+
+input:checked + .slider:before {
+  transform: translateX(28px);
+}
+
+
+/* GPU Acceleration & Rendering Optimization */
+.gpu-layer {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.reveal-line-parent {
+  overflow: hidden;
+  display: block;
+}
+
+@layer utilities {
+  .will-change-transform {
+    will-change: transform;
+  }
+}
+
