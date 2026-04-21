@@ -1099,7 +1099,7 @@ function App() {
                       setIsSubmitting(true);
                       setSubmitResult("");
                       const formData = new FormData(e.target);
-                      formData.append("access_key", "bd08bab1-b11a-4b83-aef5-92e7044577fe");
+                      formData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
 
                       try {
                         const response = await fetch("https://api.web3forms.com/submit", {
